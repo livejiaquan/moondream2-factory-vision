@@ -36,7 +36,7 @@ import os, sys, time, argparse, csv
 import torch
 from PIL import Image, ImageDraw
 
-HF_TOKEN = "hf_"   # ← 填入你的 HuggingFace token
+HF_TOKEN = os.environ.get("HF_TOKEN", "")  # 設定環境變數：export HF_TOKEN=hf_xxx
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 DTYPE  = torch.bfloat16 if DEVICE == "cuda" else torch.float32

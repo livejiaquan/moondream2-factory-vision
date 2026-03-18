@@ -46,7 +46,7 @@ if DEVICE == "cuda":
 else:
     print("⚠️  未偵測到 CUDA，將使用 CPU（速度較慢）")
 
-HF_TOKEN = "hf_your_token_here"   # ← 在這裡填入你的 HuggingFace token
+HF_TOKEN = os.environ.get("HF_TOKEN", "")  # 設定環境變數：export HF_TOKEN=hf_xxx
 
 MODEL_ID = "vikhyatk/moondream2"
 REVISION = None
