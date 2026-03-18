@@ -276,10 +276,10 @@ def main():
         description="Moondream 批量處理工具",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""範例：
-  python batch.py detect  -d usig/ -t "person" -o output/
-  python batch.py point   -d usig/ -t "person's face" -o output/
-  python batch.py caption -d usig/ -o output/
-  python batch.py query   -d usig/ -q "Is there a person?" -o output/
+  python batch.py detect  -d images/ -t "person" -o output/
+  python batch.py point   -d images/ -t "person's face" -o output/
+  python batch.py caption -d images/ -o output/
+  python batch.py query   -d images/ -q "Is there a person?" -o output/
 """
     )
 
