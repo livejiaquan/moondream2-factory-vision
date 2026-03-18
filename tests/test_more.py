@@ -46,7 +46,7 @@ def make_receipt():
         except:
             font = ImageFont.load_default()
         d.text((x, y), text, fill="black", font=font)
-    img.save("test_receipt.jpg")
+    img.save("examples/receipt.jpg")
     return img
 
 # ── 建立假條形圖圖片 ──────────────────────────────────────────────
@@ -74,7 +74,7 @@ def make_chart():
         d.text((x0+8,  base_y+5),  m, fill="black", font=font_s)
     d.line([50, 50, 50, base_y+2], fill="black", width=2)
     d.line([50, base_y, 470, base_y], fill="black", width=2)
-    img.save("test_chart.jpg")
+    img.save("examples/chart.jpg")
     return img
 
 # ─────────────────────────────────────────────────────────────────
@@ -118,8 +118,8 @@ test("場景 B：銷售圖表 — 圖表數據理解", chart, [
 
 # ── 場景 C：已有的狗狗圖（展示 detect + point） ───────────────────
 import os
-if os.path.exists("test_dog.jpg"):
-    dog = Image.open("test_dog.jpg").convert("RGB")
+if os.path.exists("examples/dog.jpg"):
+    dog = Image.open("examples/dog.jpg").convert("RGB")
     print("=" * 60)
     print("  場景 C：狗狗圖 — detect + point 視覺化")
     print("=" * 60)
@@ -146,8 +146,8 @@ if os.path.exists("test_dog.jpg"):
         p = pts[0]
         cx,cy = int(p['x']*dog.width), int(p['y']*dog.height)
         d2.ellipse([cx-8,cy-8,cx+8,cy+8], fill="yellow", outline="black", width=2)
-    vis.save("test_dog_annotated.jpg")
-    print(f"  💾 已儲存標註結果：test_dog_annotated.jpg\n")
+    vis.save("examples/dog_annotated.jpg")
+    print(f"  💾 已儲存標註結果：examples/dog_annotated.jpg\n")
 
 print("=" * 60)
 print("✅ 進階測試完成！")

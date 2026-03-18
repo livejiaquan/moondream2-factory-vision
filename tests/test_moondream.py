@@ -17,7 +17,7 @@ DTYPE  = torch.float16 if DEVICE != "cpu" else torch.float32
 print(f"🖥  裝置：{DEVICE.upper()} | dtype: {DTYPE}")
 
 # ── 下載測試圖片 ──────────────────────────────────────────────────
-TEST_IMAGE_PATH = "test_dog.jpg"
+TEST_IMAGE_PATH = "examples/dog.jpg"
 if not os.path.exists(TEST_IMAGE_PATH):
     print("📥 下載測試圖片...")
     url = "https://images.dog.ceo/breeds/retriever-golden/n02099601_3004.jpg"
