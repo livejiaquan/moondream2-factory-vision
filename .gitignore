@@ -1,0 +1,23 @@
+# 本地樣本圖片（公開授權，不推上 git）
+samples/
+
+# 廠區機密影像
+usig/
+HPC_download/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# 簡報
+moondream_pptx/
+
+# 系統
+.DS_Store
+.env
+
+# 模型快取
+*.bin
+*.safetensors

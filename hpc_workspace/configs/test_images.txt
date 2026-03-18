@@ -1,0 +1,5 @@
+# 測試圖片路徑列表（每行一個絕對或相對路徑）
+# 範例（把這些換成你實際的圖片路徑）：
+# /home/jiaquan/data/image1.jpg
+# /home/jiaquan/data/image2.png
+# results/test_dog.jpg
