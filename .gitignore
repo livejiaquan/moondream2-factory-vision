@@ -21,3 +21,4 @@ moondream_pptx/
 # 模型快取
 *.bin
 *.safetensors
+hpc_workspace/

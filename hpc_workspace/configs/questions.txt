@@ -1,6 +1,0 @@
-# 問題列表（每行一個英文問題）
-What is the main subject of this image?
-Describe the scene in detail.
-What colors are dominant in this image?
-Is there any text visible in the image?
-What objects can you identify?
