@@ -1,0 +1,38 @@
+{
+  "description": "Compare occlusion-focused prompt variants on baseline helmet false-positive frames.",
+  "baseline_filter": {
+    "description": "Only process frames where detect person > 0 and (missing_helmet=yes or detect helmet count=0).",
+    "require_person_detect": true,
+    "include_if_any": [
+      "missing_helmet_yes",
+      "helmet_count_zero"
+    ]
+  },
+  "prompt_variants": [
+    {
+      "name": "head_fully_visible",
+      "flag_when_label_is": "no",
+      "prompt": "Is the worker's head clearly and fully visible in this frame, without being blocked by any object, equipment, or body position? Answer yes or no first, then explain briefly."
+    },
+    {
+      "name": "head_occluded",
+      "flag_when_label_is": "yes",
+      "prompt": "Is the worker's head or helmet area partially or fully blocked or hidden by any object, equipment, hose, or the worker's own body position? Answer yes or no first, then explain briefly."
+    },
+    {
+      "name": "camera_angle",
+      "flag_when_label_is": "yes",
+      "prompt": "Is the worker facing away from the camera, or positioned at an angle where their head and face are not clearly visible? Answer yes or no first, then explain briefly."
+    },
+    {
+      "name": "can_confirm_helmet",
+      "flag_when_label_is": "no",
+      "prompt": "Can you clearly and confidently confirm whether or not this worker is wearing a safety helmet — meaning the helmet area is clearly visible and unobstructed? Answer yes if you can clearly tell, no if you cannot clearly tell due to angle, distance, or obstruction."
+    },
+    {
+      "name": "describe_head_area",
+      "flag_when_label_is": null,
+      "prompt": "Describe what you can see of the worker's head area. Is the helmet clearly visible, partially visible, not visible, or is the view obstructed? Be specific."
+    }
+  ]
+}

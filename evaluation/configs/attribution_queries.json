@@ -1,0 +1,26 @@
+{
+  "description": "在假設「現場皆符合配戴（ground truth 有戴）」前提下，將 baseline 的誤判拆成：影像可見性限制 vs 模型仍堅稱清楚看到違規。問法設計為較嚴格、利於解析 yes/no。",
+
+  "assumption_note": "本批公司影片視為正常合規作業；任何 missing_*=yes 或 detect 未框到，在實驗中先當作「系統誤判」再歸因。",
+
+  "queries": [
+    {
+      "name": "clear_absence_helmet",
+      "prompt": "Does this image CLEARLY and UNAMBIGUOUSLY show a worker with their head visible and NOT wearing any safety helmet or hard hat? If the head is turned away, heavily occluded, too small, at the edge of frame, or you cannot confidently see whether a helmet is worn, answer No. Answer yes or no first, then one short sentence.",
+      "interpret_yes": "模型認為「能清楚看到未戴帽」— 較像模型/判讀問題，較不像純影像遮擋。",
+      "interpret_no": "模型承認無法清楚斷定未戴帽 — 誤判可能與角度/遮擋/解析度有關。"
+    },
+    {
+      "name": "head_region_visibility_limited",
+      "prompt": "Is the worker's head or helmet region mostly not clearly visible for judging PPE — for example facing away from the camera, blocked by equipment, hose, or body, too far, motion blur, or only side/back of head visible? Answer yes or no first, then one short sentence.",
+      "interpret_yes": "歸因於影像可見性限制（背面、遮擋等）。",
+      "interpret_no": "頭部／帽區在畫面上相對可辨識。"
+    },
+    {
+      "name": "clear_absence_mask",
+      "prompt": "Does this image CLEARLY and UNAMBIGUOUSLY show a worker whose face/nose area is visible and NOT wearing any face mask or respirator when the face is visible? If face is not visible, turned away, or you cannot tell, answer No. Answer yes or no first, then one short sentence.",
+      "interpret_yes": "模型認為能清楚看到未戴面罩（臉可見時）。",
+      "interpret_no": "無法清楚斷定未戴面罩 — 可能背對、面罩被遮、或臉不清楚。"
+    }
+  ]
+}

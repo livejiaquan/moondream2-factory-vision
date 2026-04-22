@@ -1,0 +1,76 @@
+{
+  "description": "YOLO Gap 負樣本基線測試配置 — 用正常作業影片測 Moondream 的 False Positive 率",
+
+  "query_checks": [
+    {
+      "name": "worker_visible",
+      "prompt": "Is there any visible worker or person in this frame? Answer yes or no first, then explain briefly.",
+      "expected_in_normal": "varies",
+      "category": "gate"
+    },
+    {
+      "name": "smoking_visible",
+      "prompt": "Is any visible person smoking or holding a cigarette in this frame? Answer yes or no first, then explain briefly.",
+      "expected_in_normal": "no",
+      "category": "yolo_gap"
+    },
+    {
+      "name": "abnormal_behavior",
+      "prompt": "Does this frame show any unsafe, abnormal, or suspicious worker behavior? Answer yes or no first, then explain briefly.",
+      "expected_in_normal": "no",
+      "category": "yolo_gap"
+    },
+    {
+      "name": "person_falling",
+      "prompt": "Does anyone appear to be lying on the ground, collapsed, falling, or in need of help? Answer yes or no first, then explain briefly.",
+      "expected_in_normal": "no",
+      "category": "yolo_gap"
+    },
+    {
+      "name": "missing_helmet",
+      "prompt": "Is any visible person not wearing a safety helmet or hard hat? Answer yes or no first, then explain briefly.",
+      "expected_in_normal": "no",
+      "category": "yolo_enhanced"
+    },
+    {
+      "name": "missing_face_mask",
+      "prompt": "Is any visible worker missing a face mask or respirator while working? Answer yes or no first, then explain briefly.",
+      "expected_in_normal": "no",
+      "category": "yolo_enhanced"
+    },
+    {
+      "name": "wheel_chock_present",
+      "prompt": "Is there a wheel chock or tire stopper visible near a vehicle wheel? Answer yes or no first, then explain briefly.",
+      "expected_in_normal": "yes",
+      "category": "positive_baseline"
+    },
+    {
+      "name": "scene_summary",
+      "prompt": "Briefly describe the worker, PPE, vehicle, and safety-relevant objects visible in this frame.",
+      "expected_in_normal": "descriptive",
+      "category": "evidence"
+    }
+  ],
+
+  "detect_targets": [
+    { "name": "person",        "category": "baseline" },
+    { "name": "helmet",        "category": "baseline" },
+    { "name": "wheel chock",   "category": "positive_baseline" },
+    { "name": "cigarette",     "category": "yolo_gap" },
+    { "name": "fire",          "category": "yolo_gap" },
+    { "name": "fallen person", "category": "yolo_gap" }
+  ],
+
+  "caption_length": "normal",
+
+  "caption_alert_keywords": [
+    "smoking", "cigarette", "fire", "falling", "collapsed",
+    "danger", "dangerous", "accident", "injury", "unconscious",
+    "fighting", "running", "panic"
+  ],
+
+  "sampling": {
+    "default_every_sec": 5,
+    "description": "每 5 秒抽一幀，4 支影片約 7.5 分鐘 → 預計約 90 幀"
+  }
+}

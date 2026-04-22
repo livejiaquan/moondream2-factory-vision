@@ -1,0 +1,24 @@
+{
+  "description": "遮擋／角度／可見性實驗 — 與 gap_baseline 同一批 data，額外詢問是否因視角而非未配戴",
+
+  "queries": [
+    {
+      "name": "helmet_visibility_limited",
+      "prompt": "Is the safety helmet or hard hat hard to see or not clearly visible mainly because of camera angle, the worker facing away from the camera, occlusion by equipment/body/hose, distance, or poor image quality — rather than the image clearly showing the worker is not wearing a helmet? Answer yes or no first, then explain briefly."
+    },
+    {
+      "name": "mask_visibility_limited",
+      "prompt": "Is the face mask or respirator hard to see or not clearly visible mainly because of camera angle, facing direction, occlusion, distance, or image quality — rather than the image clearly showing the worker is not wearing a mask or respirator? Answer yes or no first, then explain briefly."
+    }
+  ],
+
+  "filter": {
+    "description": "只處理：detect person > 0 且（detect helmet = 0 或 missing_helmet=yes 或 missing_face_mask=yes）— 與 PPE 不確定相關的幀",
+    "require_person_detect": true,
+    "include_if_any": [
+      "helmet_count_zero",
+      "missing_helmet_yes",
+      "missing_face_mask_yes"
+    ]
+  }
+}
