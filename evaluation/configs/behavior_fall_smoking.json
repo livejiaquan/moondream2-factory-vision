@@ -1,0 +1,64 @@
+{
+  "test_name": "behavior_fall_smoking",
+  "description": "Positive-sample frame-level behavior test for fall and smoking videos. Keep this separate from the older factory PPE baseline runs.",
+  "caption_length": "normal",
+  "sampling": {
+    "default_every_sec": 0.5,
+    "description": "The source clips are short, so sample every 0.5s to inspect event boundaries without overloading the local machine."
+  },
+  "queries": [
+    {
+      "name": "person_visible",
+      "method": "gate",
+      "event": "person",
+      "kind": "yes_no",
+      "prompt": "Is there any visible person in this image? Answer yes or no first, then briefly describe where the person is."
+    },
+    {
+      "name": "fall_direct",
+      "method": "A_direct_event_query",
+      "event": "fall",
+      "kind": "yes_no",
+      "prompt": "Is anyone lying on the ground, collapsed, or fallen down in this image? Answer yes or no first, then briefly say what you see."
+    },
+    {
+      "name": "fall_strict",
+      "method": "B_strict_event_query",
+      "event": "fall",
+      "kind": "yes_no_unclear",
+      "prompt": "Can you clearly see a person on the ground or in a fallen or collapsed posture? Answer yes, no, or unclear first, then briefly explain."
+    },
+    {
+      "name": "smoking_direct",
+      "method": "A_direct_event_query",
+      "event": "smoking",
+      "kind": "yes_no",
+      "prompt": "Is any visible person smoking or holding a cigarette in this image? Answer yes or no first, then briefly say what visual evidence you see."
+    },
+    {
+      "name": "smoking_strict",
+      "method": "B_strict_event_query",
+      "event": "smoking",
+      "kind": "yes_no_unclear",
+      "prompt": "Can you clearly see a person smoking, with a cigarette at the mouth or a visible cigarette or smoke? Answer yes, no, or unclear first, then briefly explain."
+    },
+    {
+      "name": "abnormal_direct",
+      "method": "C_generic_abnormal_query",
+      "event": "abnormal",
+      "kind": "yes_no",
+      "prompt": "Does this image show an unsafe or abnormal event, such as a person falling down or smoking? Answer yes or no first, then briefly explain."
+    },
+    {
+      "name": "scene_evidence",
+      "method": "D_open_evidence_query",
+      "event": "evidence",
+      "kind": "open",
+      "prompt": "Briefly describe the person's posture and hand or mouth activity in this image."
+    }
+  ],
+  "open_evidence_keywords": {
+    "fall": ["fallen", "falling", "collapsed", "lying", "ground", "floor", "down", "prone"],
+    "smoking": ["smoking", "smoke", "cigarette", "cigar", "vape", "mouth"]
+  }
+}
