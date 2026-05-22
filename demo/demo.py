@@ -33,6 +33,7 @@ from __future__ import annotations
 import argparse
 import math
 import re
+import sys
 import threading
 import time
 from collections import deque
@@ -95,9 +96,24 @@ A_BOT = AH - BWID - 46
 A_FRAME = (BWID, A_TOP, AW - BWID, A_BOT)
 L_FRAME = (8, 8, LW - 8, LH - 8)
 
-FONT_FILE = "/System/Library/Fonts/HelveticaNeue.ttc"
-FONT_FALLBACK = "/System/Library/Fonts/Supplemental/Arial.ttf"
-FONT_INDEX = {"regular": 0, "bold": 1, "medium": 10, "light": 7}
+# Per-platform font candidates (tried in order; first hit wins).
+if sys.platform == "darwin":
+    _FONT_CANDIDATES: dict[str, list[tuple[str, int]]] = {
+        w: [("/System/Library/Fonts/HelveticaNeue.ttc", idx),
+            ("/System/Library/Fonts/Supplemental/Arial.ttf", 0)]
+        for w, idx in {"regular": 0, "bold": 1, "medium": 10, "light": 7}.items()
+    }
+elif sys.platform == "win32":
+    _W = "C:/Windows/Fonts/"
+    _FONT_CANDIDATES = {
+        "regular": [(_W + "segoeui.ttf", 0),  (_W + "arial.ttf", 0)],
+        "bold":    [(_W + "segoeuib.ttf", 0), (_W + "arialbd.ttf", 0), (_W + "arial.ttf", 0)],
+        "medium":  [(_W + "segoeui.ttf", 0),  (_W + "arial.ttf", 0)],
+        "light":   [(_W + "segoeuil.ttf", 0), (_W + "segoeui.ttf", 0), (_W + "arial.ttf", 0)],
+    }
+else:
+    _FONT_CANDIDATES = {w: [] for w in ("regular", "bold", "medium", "light")}
+
 _font_cache: dict[tuple[int, str], ImageFont.ImageFont] = {}
 CV_FONT = cv2.FONT_HERSHEY_DUPLEX
 
@@ -106,13 +122,15 @@ def font(size: int, weight: str = "regular") -> ImageFont.ImageFont:
     key = (size, weight)
     if key in _font_cache:
         return _font_cache[key]
-    try:
-        f: ImageFont.ImageFont = ImageFont.truetype(FONT_FILE, size, index=FONT_INDEX[weight])
-    except Exception:
+    f: ImageFont.ImageFont | None = None
+    for path, idx in _FONT_CANDIDATES.get(weight, []):
         try:
-            f = ImageFont.truetype(FONT_FALLBACK, size)
+            f = ImageFont.truetype(path, size, index=idx)
+            break
         except Exception:
-            f = ImageFont.load_default()
+            continue
+    if f is None:
+        f = ImageFont.load_default()
     _font_cache[key] = f
     return f
 

@@ -11,7 +11,21 @@
 
 推論在背景執行緒進行，影片不會因為等模型而卡住。
 
-## 執行
+## Windows 快速開始
+
+```
+1. git clone <repo>
+2. 進入 demo\ 資料夾
+3. 雙擊 setup_windows.bat（有 NVIDIA GPU 選 Y，沒有選 N）
+4. 雙擊 run_demo.bat
+```
+
+第一次執行會自動下載 Moondream2 模型（~2 GB）；之後使用快取，不需重下載。
+測試影片已放在 `demo/videos/`，`run_demo.bat` 預設使用此資料夾。
+
+---
+
+## macOS 執行
 
 ```bash
 source ../.venv/bin/activate

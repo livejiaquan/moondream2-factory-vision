@@ -1,0 +1,12 @@
+# Moondream demo dependencies
+# torch / torchvision are NOT listed here — install them separately
+# with the correct CUDA/CPU variant (see setup_windows.bat or README).
+
+transformers==4.46.3
+opencv-python>=4.8.0
+Pillow>=10.0
+numpy>=1.26
+rich>=13.0
+einops>=0.7
+timm>=0.9
+accelerate>=0.26
