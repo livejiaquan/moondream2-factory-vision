@@ -11,17 +11,28 @@
 
 推論在背景執行緒進行，影片不會因為等模型而卡住。
 
-## Windows 快速開始
+## Windows 快速開始（PowerShell）
 
-```
-1. git clone <repo>
-2. 進入 demo\ 資料夾
-3. 雙擊 setup_windows.bat（有 NVIDIA GPU 選 Y，沒有選 N）
-4. 雙擊 run_demo.bat
+在 PowerShell 依序執行：
+
+```powershell
+# 1. 解除執行政策限制（本次 session 有效）
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+# 2. clone 到 ~/develop
+cd ~\develop
+git clone https://github.com/livejiaquan/moondream2-factory-vision.git
+cd moondream2-factory-vision\demo
+
+# 3. 安裝環境（有 NVIDIA GPU 選 Y，沒有選 N；可選預下載 ~2 GB 模型）
+.\setup_windows.ps1
+
+# 4. 執行 demo
+.\run_demo.ps1
 ```
 
-第一次執行會自動下載 Moondream2 模型（~2 GB）；之後使用快取，不需重下載。
-測試影片已放在 `demo/videos/`，`run_demo.bat` 預設使用此資料夾。
+第一次執行會自動下載 Moondream2 模型（~2 GB）；之後使用 HuggingFace 快取，不需重下載。
+測試影片已放在 `demo/videos/`，`run_demo.ps1` 預設使用此資料夾。
 
 ---
 
