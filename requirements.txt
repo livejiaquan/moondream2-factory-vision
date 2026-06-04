@@ -1,0 +1,6 @@
+torch
+torchvision
+transformers==4.46.3
+opencv-python-headless
+Pillow
+numpy
