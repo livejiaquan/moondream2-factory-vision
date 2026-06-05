@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--data",
         default=str(DEFAULT_DATA),
-        help="影片/圖片資料夾（預設 ../data/raw_videos/）",
+        help="影片/圖片資料夾（預設 repo_root/data/raw_videos/）",
     )
     parser.add_argument(
         "--config",

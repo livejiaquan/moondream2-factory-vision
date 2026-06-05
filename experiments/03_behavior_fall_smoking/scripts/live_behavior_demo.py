@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Moondream — behavior-detection demo for stakeholder briefings.
 
-Standalone showcase, fully isolated from ``evaluation/``. Built to look like a real
+Standalone showcase, fully isolated from the factory baseline experiment. Built to look like a real
 monitoring tool (not a hand-drawn mock UI). Three real surfaces:
 
   • Window "LIVE FEED"  — the source video, played smoothly on the main thread with a
@@ -48,7 +48,7 @@ VIDEO_EXTS = {".mp4", ".mov", ".avi", ".mkv", ".webm", ".m4v"}
 WINDOW_LIVE = "Moondream — LIVE FEED"
 WINDOW_ANALYSIS = "Moondream — ANALYSIS"
 
-# Lock the demo to the two behaviors already validated in evaluation/ (direct prompts).
+# Lock the demo to the two behaviors validated in this experiment (direct prompts).
 QUERIES: dict[str, dict[str, str]] = {
     "smoking": {
         "label": "SMOKING",
