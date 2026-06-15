@@ -1,6 +1,8 @@
-torch
-torchvision
+torch==2.10.0
+torchvision==0.25.0
 transformers==4.46.3
-opencv-python-headless
-Pillow
-numpy
+opencv-python-headless==4.13.0.92
+Pillow==12.1.1
+numpy==2.4.3
+einops==0.8.2
+accelerate==1.13.0

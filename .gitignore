@@ -37,7 +37,7 @@ hpc_workspace/
 moondream_pptx/
 demo/_selftest_*.png
 
-# Public coworker-facing report folder selected during cleanup.
+# Reviewed shareable artifact folder.
 !shareables/
 !shareables/reports/
 !shareables/reports/**
